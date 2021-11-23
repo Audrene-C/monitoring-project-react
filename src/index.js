@@ -26,7 +26,6 @@ import Index from './reducers/alerte/index.js';
 import List from './reducers/alerte/list.js';
 import Show from './reducers/alerte/show.js';
 import Update from './reducers/alerte/update.js';
-// test fetch api
 import axios from 'axios';
 
 async function getAlertes() {
