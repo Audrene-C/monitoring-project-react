@@ -3,17 +3,19 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     SET_MESSAGE,
-} from "./types";
+} from "./type";
 
 import AuthService from "../services/auth.service";
 
 export const login = (email, password) => (dispatch) => {
     return AuthService.login(email, password).then(
         (data) => {
-                console.log("data in action auth : ", data);
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: { user: data },
+                payload: { 
+                    user: data.data.userId,
+                    // sites : JSON.parse(data.data.sites)
+                },
             });
 
             return Promise.resolve();
@@ -46,4 +48,6 @@ export const logout = () => (dispatch) => {
     dispatch({
         type: LOGOUT,
     });
+
+    return Promise.resolve();
 };

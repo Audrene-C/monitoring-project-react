@@ -2,37 +2,33 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-} from "../actions/types";
+} from "../actions/type";
 
-const user = JSON.parse(localStorage.getItem("jwt_token"));
+const token = localStorage.getItem("jwt_token");
+const userId = localStorage.getItem("userId");
 
-const initialState = user
-? { isLoggedIn: true, user }
+const initialState = (token && userId)
+? { isLoggedIn: true, user: userId }
 : { isLoggedIn: false, user: null };
 
-export default function (state = initialState, action) {
+export default function authReducer(state = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
         case LOGIN_SUCCESS:
-        return {
-            ...state,
-            isLoggedIn: true,
-            user: payload.user,
-        };
+            return {
+                ...state,
+                user: payload.user,
+            };
         case LOGIN_FAIL:
-        return {
-            ...state,
-            isLoggedIn: false,
-            user: null,
-        };
+            return {
+                ...state
+            };
         case LOGOUT:
-        return {
-            ...state,
-            isLoggedIn: false,
-            user: null,
-        };
+            return {
+                ...state
+            };
         default:
-        return state;
+            return state;
     }
 }

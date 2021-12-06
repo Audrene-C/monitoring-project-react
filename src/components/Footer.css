@@ -1,0 +1,19 @@
+#Footer {
+    width: 100%;
+    bottom: 0px;
+    background-color: #b43c38;
+    height: 10%;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+
+#Footer > * {
+    position: relative;
+    top: 35%;
+    color: lightgray;
+}
+
+#Footer > a:hover {
+    color: gray;
+}
