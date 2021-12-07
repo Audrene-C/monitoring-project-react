@@ -9,6 +9,7 @@ import {
 import { reducer as form } from 'redux-form';
 import auth from './reducers/auth';
 import message from './reducers/message';
+import { apiSlice } from './feature/api/apiSlice';
 
 const history = createBrowserHistory();
 // const middleware = [thunk];
@@ -19,9 +20,10 @@ const store = configureStore({
         form,
         /* Add your reducers here */
         auth,
-        message
+        message,
+        [apiSlice.reducerPath]: apiSlice.reducer
     }),
-    middleware: [routerMiddleware(history), thunk]
+    middleware: [routerMiddleware(history), thunk, apiSlice.middleware]
 });
 
 export default store;

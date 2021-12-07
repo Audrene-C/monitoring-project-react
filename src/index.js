@@ -8,8 +8,7 @@ import { createBrowserHistory } from 'history';
 import { ConnectedRouter } from 'connected-react-router';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-// Import your reducers and routes here
-// import AlerteRoutes from './routes/alerte.js';
+
 import MyRoutes from './routes/myroutes.js';
 import store from './store';
 
@@ -19,16 +18,6 @@ import './index.css';
 import Footer from './components/Footer';
 
 const history = createBrowserHistory();
-// const store = createStore(
-//   combineReducers({
-//     router: connectRouter(history),
-//     form,
-//     /* Add your reducers here */
-//     Auth,
-//     Message
-//   }),
-//   applyMiddleware(routerMiddleware(history), thunk)
-// );
 
 ReactDOM.render(
   <React.StrictMode>

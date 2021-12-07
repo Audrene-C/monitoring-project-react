@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
     return(
         <div id="Footer">
-            <a href="https://dianalyse-signal.com">Di-Analyse Signal</a>
+            <a href="https://dianalyse-signal.com">En savoir plus</a>
             <a href="https://www.facebook.com/pages/category/Business-Service/Di-Analyse-Signal-107259004001624">
                 <img alt="fb icon" src="/assets/fb_icon.png"
                 width="30px" />

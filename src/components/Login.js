@@ -2,15 +2,14 @@ import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from 'react-router-dom';
 
-// import { Form } from "react-bootstrap";
-// import { Button } from "react-bootstrap";
-
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import { isEmail } from "validator";
 import { login } from "../actions/auth";
+
+// import { useAuthQuery } from "../feature/api/apiSlice";
 
 import "./Login.css";
 
@@ -35,6 +34,7 @@ const validEmail = value => {
 };
 
 const Login = (props) => {
+
   const form = useRef();
   const checkBtn = useRef();
 
@@ -65,9 +65,10 @@ const Login = (props) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
+      
       dispatch(login(email, password))
         .then(() => {
-          props.history.push("/sites");
+          props.history.push("/dashboard");
           window.location.reload();
         })
         .catch(() => {
@@ -79,7 +80,7 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/sites" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (

@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import { logout } from "../actions/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from 'react-router-dom';
-import Header from "./Header";
+import { Redirect } from "react-router";
+import "./Header.css";
+import { Link } from "react-router-dom";
 
-const Site = (props) => {
+const Header = (props) => {
 
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const { isLoggedIn } = useSelector(state => state.auth);
-    
-    const token = localStorage.getItem('jwt_token');
-    console.log('token : ', token);
-    console.log('typeof token : ', typeof token);
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -21,7 +18,6 @@ const Site = (props) => {
     
         dispatch(logout())
             .then(() => {
-            props.history.push("/login");
             window.location.reload();
             })
             .catch(() => {
@@ -34,18 +30,23 @@ const Site = (props) => {
     }
 
     return(
-        <div id="Sites">
+        <div id="Header">
 
-            <Header />
+            <img alt="dianalyse logo" src="/assets/logo2.png"
+                width="auto" height="40%" />
 
-            <button className="btn btn-primary btn-block" disabled={loading} onClick={handleLogout}>
+            <Link to="/dashboard">Dashboard</Link>
+
+            <Link to="/sites">Mes Sites</Link>
+
+            <button className="btn btn-block" disabled={loading} onClick={handleLogout}>
                 {loading && (
                     <span className="spinner-border spinner-border-sm"></span>
                 )}
-                <span>Logout</span>
+                <span>Se déconnecter</span>
             </button>
         </div>
     )
 }
 
-export default Site;
+export default Header;
