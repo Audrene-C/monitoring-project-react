@@ -7,10 +7,10 @@ import { Redirect } from "react-router";
 
 import { Container, Row, Spinner } from "react-bootstrap";
 import "./Dashboard.css";
-import Historique from "./alerte/Historique";
-import OnGoingAlerts from "./alerte/OngoingAlert";
+import SiteList from "./site/SiteList";
+import AlertDetails from "./alerte/AlertDetails";
 
-const Dashboard = () => {
+const MySites = () => {
 
     //my state auth
     const { isLoggedIn, user } = useSelector(state => state.auth);
@@ -22,7 +22,7 @@ const Dashboard = () => {
         isSuccess,
         isError,
         error
-    } = useGetUserQuery(user, { skip: !isLoggedIn, pollingInterval: 3000 });
+    } = useGetUserQuery(user, { skip: !isLoggedIn });
     
     //if no user is logged in, redirect to login page
     if (!isLoggedIn) {
@@ -46,17 +46,13 @@ const Dashboard = () => {
         );
     } else if (isSuccess) {
         content = (
-            <div id="content">
-                <h1>Bonjour {fullUser.name}</h1>
-
-                <Container fluid>
+            <Container fluid>
                     <Row>
-                        <Historique alerte={fullUser.alertes} />
+                        <SiteList alertes={fullUser.alertes}/>
 
-                        <OnGoingAlerts alerte={fullUser.alertes} />
+                        <AlertDetails alertes={fullUser.alertes}/>
                     </Row>
-                </Container>
-            </div>
+            </Container>
         );
     }
 
@@ -71,4 +67,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;
+export default MySites;

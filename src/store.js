@@ -9,6 +9,7 @@ import {
 import { reducer as form } from 'redux-form';
 import auth from './reducers/auth';
 import message from './reducers/message';
+import currentAlertReducer from './reducers/currentAlert';
 import { apiSlice } from './feature/api/apiSlice';
 
 const history = createBrowserHistory();
@@ -21,6 +22,7 @@ const store = configureStore({
         /* Add your reducers here */
         auth,
         message,
+        currentAlertReducer,
         [apiSlice.reducerPath]: apiSlice.reducer
     }),
     middleware: [routerMiddleware(history), thunk, apiSlice.middleware]

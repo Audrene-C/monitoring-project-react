@@ -1,5 +1,4 @@
 import axios from "axios";
-import getSitesByUser from './sites.service';
 
 const API_URL = "http://monitoring-project-api.test/api/";
 
@@ -20,20 +19,8 @@ const login = (email, password) => {
           //save userId in storage
           localStorage.setItem('userId', res.data.data.userId);
           console.log('userId stored');
-
-          //get sites with the logged userId
-          getSitesByUser(res.data.data.userId)
-            .then((resp) => {
-              if (resp['hydra:totalItems'] === 0) {
-                console.log('no sites found : ', resp);
-              } else {
-                //save sites in storage
-                console.log('type of resp : ', typeof resp);
-                localStorage.setItem('sites', JSON.stringify(resp));
-                console.log('sites stored');
-              }
-            })
         }
+
       return res.data;
     });
 };
@@ -41,7 +28,6 @@ const login = (email, password) => {
 const logout = () => {
   localStorage.removeItem("jwt_token");
   localStorage.removeItem("userId");
-  localStorage.removeItem("sites");
 };
 
 // eslint-disable-next-line

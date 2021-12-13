@@ -68,7 +68,7 @@ const Login = (props) => {
       
       dispatch(login(email, password))
         .then(() => {
-          props.history.push("/dashboard");
+          props.history.push("/");
           window.location.reload();
         })
         .catch(() => {
@@ -80,7 +80,7 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/" />;
   }
 
   return (

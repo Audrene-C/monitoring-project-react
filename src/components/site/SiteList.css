@@ -1,0 +1,17 @@
+#site-list img {
+    width: 2%;
+}
+
+.t-left {
+    text-align: left;
+}
+
+.bold-r {
+    font-weight: bold;
+    color: #b43c38;
+}
+
+.alert-h:hover {
+    background-color: #1d2025;
+    cursor: pointer;
+}

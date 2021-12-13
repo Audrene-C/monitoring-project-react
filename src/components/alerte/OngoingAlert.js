@@ -1,75 +1,63 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { useGetAlertesByUserQuery } from "../../feature/api/apiSlice";
 import { Redirect } from "react-router";
-import classNames from "classnames";
+import { useHistory } from "react-router-dom";
 
-import { Col, Spinner } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import "./OngoingAlert.css";
 
-const OnGoingAlerts = () => {
+const OnGoingAlerts = (props) => {
 
     //my state auth
-    const { isLoggedIn, user } = useSelector(state => state.auth);
+    const { isLoggedIn } = useSelector(state => state.auth);
 
-    //fetch alerts for this user
-    const { 
-        data: res,
-        isLoading,
-        isFetching, 
-        isSuccess, 
-        isError, 
-        error 
-    } = useGetAlertesByUserQuery(user, { skip: !isLoggedIn });
+    const history = useHistory();
+    const alertes = props.alerte;
 
     //if no user is logged in, redirect to login page
     if (!isLoggedIn) {
         return <Redirect to="/login" />;
     }
 
-    let content;
-
-    //adapt content with each step of the request
-    if (isLoading) {
-        content = (
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
-        );
-    } else if (isError) {
-        content = (
-            <div className="alert alert-danger" role="alert">
-                The following error occured : {error}
-            </div>
-        );
-    } else if (isSuccess) {
-
-        const alertes = res['hydra:member'];
-
-        const renderedAlertes = alertes.map((alerte) => (
-            alerte.isHealthy ? <></> : <p key={alerte.id}>{alerte.date} - {alerte.isHealthy} - {alerte.type}</p>
-        ))
-    
-        const containerClassname = classNames('alertes-container', {
-            disabled: isFetching,
-        })
-
-        content = (
-            <div id="OnGoingAlerts">
-                <p>Alertes en cours</p>
-                <div className={containerClassname}>
-                    {renderedAlertes}
-                </div>
-            </div>
-        );
+    const goToSites = () => { 
+        let path = '/sites'; 
+        history.push(path);
     }
 
-    return (
-        <Col>
-            {content}
-        </Col>
-    )
+    if (alertes) {
+
+        const renderedAlertes = alertes.filter((alerte) => {
+            if (!alerte.isHealthy) {
+                return alerte;
+            }
+        }).map((activeAlerts) => (
+            <div 
+                key={activeAlerts.id} 
+                className={ activeAlerts.isQualified ? "alerte-orange" : "alerte-red" }
+                onClick={goToSites}
+            >
+                <p>{activeAlerts.site.name} - {activeAlerts.machine.name}</p>
+                <p>Type : {activeAlerts.type}</p>
+                <p>Date : {activeAlerts.date}</p>
+                <p>Cliquez pour plus de détails</p>
+            </div>
+        ))
+    
+        return (
+            <Col className="left-shadow">
+                <div id="OnGoingAlerts">
+                    <h2 className="m-top">Alertes en cours</h2>
+                    <div>
+                        {renderedAlertes}
+                    </div>
+                </div>
+            </Col>
+        )
+    } else {
+
+        return <></>;
+    }
 }
 
 export default OnGoingAlerts;

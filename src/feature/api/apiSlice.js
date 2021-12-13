@@ -36,8 +36,15 @@ export const apiSlice = createApi({
     getAlertesByUser: builder.query({
         query: userId => `/users/${userId}/alertes`
     }),
+    getSitesByUser: builder.query({
+      query: userId => `/users/${userId}/sites`
+  }),
   })
 });
 
 // Export the auto-generated hook for the `auth` query endpoint
-export const { useAuthQuery, useGetUserQuery, useGetAlertesByUserQuery } = apiSlice;
+export const { useAuthQuery, 
+  useGetUserQuery, 
+  useGetAlertesByUserQuery,
+  useGetSitesByUserQuery
+} = apiSlice;

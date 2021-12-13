@@ -1,9 +1,9 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Site from "../components/Site";
+import MySites from "../components/MySites";
 
-const SiteRoute = [
-    <Route exact path="/sites" component={Site} key="login"/>
+const MySitesRoute = [
+    <Route exact path="/sites" component={MySites} key="login"/>
 ];
 
-export default SiteRoute;
+export default MySitesRoute;

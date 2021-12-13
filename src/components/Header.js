@@ -35,7 +35,7 @@ const Header = (props) => {
             <img alt="dianalyse logo" src="/assets/logo2.png"
                 width="auto" height="40%" />
 
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/">Dashboard</Link>
 
             <Link to="/sites">Mes Sites</Link>
 

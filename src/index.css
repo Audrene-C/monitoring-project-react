@@ -24,3 +24,8 @@ html, body, #root {
 body a {
   text-decoration: none;
 }
+
+#content {
+  overflow-y: scroll;
+  margin-bottom: 10%;
+}

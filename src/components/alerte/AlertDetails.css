@@ -1,0 +1,16 @@
+figure, figure > img {
+    width: 40%;
+}
+
+figure {
+    margin: 0px;
+}
+
+#fig {
+    display: inline;
+    width: 100%;
+}
+
+.left {
+    text-align: left;
+}
