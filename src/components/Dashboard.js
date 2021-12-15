@@ -22,7 +22,7 @@ const Dashboard = () => {
         isSuccess,
         isError,
         error
-    } = useGetUserQuery(user, { skip: !isLoggedIn, pollingInterval: 3000 });
+    } = useGetUserQuery(user, { skip: !isLoggedIn, pollingInterval: 60000 });
     
     //if no user is logged in, redirect to login page
     if (!isLoggedIn) {

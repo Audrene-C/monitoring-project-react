@@ -7,7 +7,7 @@ export const apiSlice = createApi({
   reducerPath: 'api',
   // All of our requests will have URLs starting with this
   baseQuery: fetchBaseQuery({ 
-      baseUrl: 'http://monitoring-project-api.test/api',
+      baseUrl: 'https://api.monitoring.simplon-roanne.fr/api',
       prepareHeaders: (headers = {}) => {
         const token = localStorage.getItem('jwt_token');
         if (token) {

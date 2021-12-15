@@ -13,8 +13,7 @@ export const login = (email, password) => (dispatch) => {
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: { 
-                    user: data.data.userId,
-                    // sites : JSON.parse(data.data.sites)
+                    user: data.data.userId
                 },
             });
 

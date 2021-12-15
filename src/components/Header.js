@@ -5,7 +5,7 @@ import { Redirect } from "react-router";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-const Header = (props) => {
+const Header = () => {
 
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();

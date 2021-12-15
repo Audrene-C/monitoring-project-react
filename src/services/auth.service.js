@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://monitoring-project-api.test/api/";
+const API_URL = "https://api.monitoring.simplon-roanne.fr/api/";
 
 const login = (email, password) => {
   return axios

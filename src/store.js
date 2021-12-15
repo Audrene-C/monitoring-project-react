@@ -13,7 +13,6 @@ import currentAlertReducer from './reducers/currentAlert';
 import { apiSlice } from './feature/api/apiSlice';
 
 const history = createBrowserHistory();
-// const middleware = [thunk];
 
 const store = configureStore({
     reducer: combineReducers({
